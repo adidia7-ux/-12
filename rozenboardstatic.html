@@ -1,0 +1,1010 @@
+<!doctype html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<title>לוח חופשות רוזן</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;600;700&family=Heebo:wght@400;500;600;700;800&display=swap">
+
+<style>
+  :root{
+    --paper:#F6F3EC;
+    --surface:#FFFFFF;
+    --surface-2:#FBF8F1;
+    --ink:#1B2440;
+    --ink-soft:#5B6478;
+    --ink-faint:#9098AC;
+    --line:#E4DDD0;
+    --line-soft:#EDE8DC;
+    --gold:#B8872E;
+    --gold-soft:#F1E2C0;
+    --gold-ink:#5C4210;
+    --weekend:#EFEAE0;
+    --danger:#A14B3E;
+    --danger-soft:#F3E1DC;
+    --good:#3F7D5C;
+    --shadow:0 1px 2px rgba(27,36,64,.06), 0 10px 28px -14px rgba(27,36,64,.22);
+    --radius-s:8px;
+    --radius-m:13px;
+    --radius-l:20px;
+    --font-display:'Frank Ruhl Libre','David Libre',Georgia,serif;
+    --font-body:'Heebo','Segoe UI',Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#10142A;
+      --surface:#171C38;
+      --surface-2:#1D2344;
+      --ink:#ECE7DA;
+      --ink-soft:#A8AFC6;
+      --ink-faint:#6C749070;
+      --line:#2A3158;
+      --line-soft:#232A4C;
+      --gold:#DBAB4E;
+      --gold-soft:#3B2E14;
+      --gold-ink:#F3DCA0;
+      --weekend:#0D1128;
+      --danger:#D08476;
+      --danger-soft:#3A2320;
+      --good:#6FBE94;
+      --shadow:0 1px 2px rgba(0,0,0,.35), 0 14px 30px -16px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#10142A;
+    --surface:#171C38;
+    --surface-2:#1D2344;
+    --ink:#ECE7DA;
+    --ink-soft:#A8AFC6;
+    --ink-faint:#6C749070;
+    --line:#2A3158;
+    --line-soft:#232A4C;
+    --gold:#DBAB4E;
+    --gold-soft:#3B2E14;
+    --gold-ink:#F3DCA0;
+    --weekend:#0D1128;
+    --danger:#D08476;
+    --danger-soft:#3A2320;
+    --good:#6FBE94;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 14px 30px -16px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);}
+  ::selection{background:var(--gold-soft);color:var(--gold-ink);}
+  button{font-family:inherit;}
+  input,select{font-family:inherit;color:inherit;}
+  ::-webkit-scrollbar{width:9px;height:9px;}
+  ::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;animation:none !important;}
+  }
+
+  .head-wrap{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);}
+  .topbar{display:flex;align-items:center;gap:20px;padding:16px 24px 12px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:baseline;gap:10px;}
+  .brand-mark{font-family:var(--font-display);font-weight:700;font-size:26px;color:var(--ink);letter-spacing:.5px;}
+  .brand-sub{font-size:13px;color:var(--ink-soft);font-weight:500;}
+  .nav{display:flex;align-items:center;gap:6px;margin-inline-start:auto;}
+  .nav-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s;}
+  .nav-btn:hover{background:var(--gold-soft);border-color:var(--gold);}
+  .month-title{font-family:var(--font-display);font-size:20px;font-weight:600;min-width:150px;text-align:center;font-variant-numeric:tabular-nums;}
+  .today-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;cursor:pointer;margin-inline-start:6px;transition:background .15s,border-color .15s;}
+  .today-btn:hover{background:var(--gold-soft);border-color:var(--gold);}
+  .topbar-right{display:flex;align-items:center;gap:10px;}
+  .icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);transition:background .15s,color .15s,border-color .15s;}
+  .icon-btn:hover{background:var(--gold-soft);color:var(--gold-ink);border-color:var(--gold);}
+  .me-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px 5px 6px;cursor:pointer;color:var(--ink);font-size:13px;font-weight:600;}
+  .me-btn:hover{border-color:var(--gold);}
+  .me-avatar{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex:none;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:8px;padding:0 24px 14px;}
+  .legend-chip{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:border-color .15s,color .15s,background .15s;}
+  .legend-chip .dot{width:8px;height:8px;border-radius:50%;flex:none;}
+  .legend-chip:hover{border-color:var(--gold);}
+  .legend-chip.active{background:var(--gold-soft);border-color:var(--gold);color:var(--gold-ink);}
+  .legend-reset{font-size:12.5px;color:var(--ink-faint);background:none;border:none;cursor:pointer;text-decoration:underline;padding:5px 4px;display:none;}
+  .legend-reset.show{display:inline-block;}
+
+  .today-strip{padding:0 24px 16px;}
+  .today-strip-head{font-size:12px;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+  .today-strip-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;}
+  .today-empty{font-size:13px;color:var(--ink-faint);}
+
+  .banner{margin:0 24px 14px;padding:10px 16px;border-radius:var(--radius-s);background:var(--gold-soft);color:var(--gold-ink);font-size:13px;font-weight:600;border:1px solid var(--gold);}
+
+  .cal-outer{padding:0 24px 32px;overflow-x:auto;}
+  .cal-inner{min-width:820px;}
+  .weekday-row{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:8px;}
+  .weekday-cell{text-align:center;font-size:12px;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;padding:4px 0;}
+  .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+
+  .day-cell{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-m);min-height:140px;display:flex;flex-direction:column;padding:8px 8px 6px;position:relative;transition:box-shadow .15s;}
+  .day-cell.weekend{background:var(--weekend);}
+  .day-cell.outside{opacity:.42;}
+  .day-cell.is-today{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset;}
+  .day-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+  .day-num{font-family:var(--font-display);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;}
+  .day-cell.is-today .day-num{color:var(--gold-ink);background:var(--gold-soft);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;}
+  .day-count{font-size:10.5px;color:var(--ink-faint);font-variant-numeric:tabular-nums;font-weight:600;}
+  .day-chips{display:flex;flex-direction:column;gap:4px;flex:1;overflow-y:auto;max-height:112px;padding-inline-end:2px;}
+  .chip{display:flex;align-items:center;gap:6px;background:var(--surface-2);border:1px solid var(--line-soft);border-radius:7px;padding:4px 6px;font-size:12px;font-weight:600;color:var(--ink);cursor:default;position:relative;}
+  .chip.dimmed{opacity:.32;}
+  .chip .dot{width:7px;height:7px;border-radius:50%;flex:none;}
+  .chip .cname{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .chip .rm{opacity:0;flex:none;width:15px;height:15px;border-radius:50%;border:none;background:var(--line);color:var(--ink-soft);font-size:11px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:opacity .12s,background .12s,color .12s;}
+  .chip:hover .rm{opacity:1;}
+  .chip .rm:hover{background:var(--danger);color:#fff;}
+  .day-add{margin-top:6px;border:1px dashed var(--line);background:none;border-radius:7px;padding:5px 6px;font-size:12px;font-weight:600;color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:border-color .15s,color .15s,background .15s;}
+  .day-add:hover{border-color:var(--gold);color:var(--gold-ink);background:var(--gold-soft);}
+  .day-add:disabled{opacity:.45;cursor:not-allowed;border-style:solid;}
+
+  .modal-backdrop{position:fixed;inset:0;background:rgba(20,24,44,.5);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:100;opacity:0;pointer-events:none;transition:opacity .15s;}
+  .modal-backdrop.open{opacity:1;pointer-events:auto;}
+  .modal{background:var(--surface);border-radius:var(--radius-l);box-shadow:var(--shadow);width:100%;max-width:420px;max-height:86vh;display:flex;flex-direction:column;overflow:hidden;transform:translateY(8px);transition:transform .15s;}
+  .modal-backdrop.open .modal{transform:translateY(0);}
+  .modal.modal-lg{max-width:640px;}
+  .modal.modal-sm{max-width:360px;}
+  .modal-head{padding:18px 20px 12px;border-bottom:1px solid var(--line);position:relative;}
+  .modal-head h2{margin:0;font-family:var(--font-display);font-size:19px;font-weight:600;}
+  .modal-date{font-size:13px;color:var(--ink-soft);margin-top:2px;font-weight:500;}
+  .modal-close{position:absolute;top:14px;left:16px;width:28px;height:28px;border-radius:50%;border:none;background:var(--surface-2);color:var(--ink-soft);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  .modal-close:hover{background:var(--line);}
+  .modal-body{padding:18px 20px;overflow-y:auto;}
+  .modal-foot{padding:14px 20px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+
+  .field-label{display:block;font-size:12px;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+  .field-input, input[type="text"], select{width:100%;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);border-radius:var(--radius-s);padding:10px 12px;font-size:14px;}
+  .field-input:focus, input[type="text"]:focus, select:focus{border-color:var(--gold);}
+  .combo{position:relative;}
+  .combo-list{margin-top:6px;border:1px solid var(--line);border-radius:var(--radius-s);max-height:200px;overflow-y:auto;background:var(--surface);}
+  .combo-row{display:flex;align-items:center;gap:8px;padding:9px 12px;font-size:13.5px;font-weight:600;cursor:pointer;border-bottom:1px solid var(--line-soft);}
+  .combo-row:last-child{border-bottom:none;}
+  .combo-row:hover{background:var(--gold-soft);}
+  .combo-row .dot{width:8px;height:8px;border-radius:50%;flex:none;}
+  .combo-row .cdept{margin-inline-start:auto;font-size:11px;color:var(--ink-faint);font-weight:500;}
+  .combo-row.add-new{color:var(--gold-ink);}
+  .combo-empty{padding:10px 12px;font-size:12.5px;color:var(--ink-faint);}
+  .new-emp-dept{margin-top:12px;}
+  .dept-pick{display:flex;flex-wrap:wrap;gap:8px;}
+  .dept-pick-btn{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--ink);}
+  .dept-pick-btn .dot{width:8px;height:8px;border-radius:50%;flex:none;}
+  .dept-pick-btn.selected{border-color:var(--gold);background:var(--gold-soft);color:var(--gold-ink);}
+  .selected-emp{margin-top:12px;display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius-s);padding:9px 12px;font-size:13.5px;font-weight:600;}
+  .selected-emp .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .inline-note{font-size:12px;color:var(--danger);font-weight:600;margin-top:8px;}
+  .capacity-note{font-size:12px;color:var(--ink-faint);font-weight:600;}
+
+  .btn-primary{background:var(--ink);color:var(--paper);border:none;border-radius:999px;padding:10px 22px;font-size:13.5px;font-weight:700;cursor:pointer;transition:background .15s,opacity .15s;}
+  .btn-primary:hover{background:var(--gold-ink);}
+  .btn-primary:disabled{opacity:.4;cursor:not-allowed;}
+  .btn-secondary{background:var(--surface-2);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;}
+  .btn-secondary:hover{border-color:var(--gold);}
+  .btn-secondary:disabled{opacity:.4;cursor:not-allowed;}
+
+  .manage-section{margin-bottom:22px;}
+  .manage-section h3{font-family:var(--font-display);font-size:15px;font-weight:600;margin:0 0 4px;}
+  .manage-section .sec-hint{font-size:12px;color:var(--ink-faint);margin:0 0 10px;}
+  .dept-list, .emp-table{display:flex;flex-direction:column;gap:6px;margin-bottom:12px;}
+  .row-item{display:flex;align-items:center;gap:10px;border:1px solid var(--line-soft);background:var(--surface-2);border-radius:var(--radius-s);padding:8px 10px;}
+  .row-item .dot{width:12px;height:12px;border-radius:50%;flex:none;border:none;padding:0;cursor:default;}
+  .row-item .rname{flex:1;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .row-item select{width:auto;flex:none;max-width:150px;padding:5px 8px;font-size:12.5px;}
+  .row-del{border:none;background:none;color:var(--ink-faint);font-size:15px;cursor:pointer;width:22px;height:22px;border-radius:50%;flex:none;}
+  .row-del:hover{background:var(--danger-soft);color:var(--danger);}
+  .swatch-input{-webkit-appearance:none;appearance:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);padding:0;background:none;cursor:pointer;flex:none;}
+  .swatch-input::-webkit-color-swatch-wrapper{padding:2px;}
+  .swatch-input::-webkit-color-swatch{border-radius:50%;border:none;}
+  .add-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .add-row input{flex:1;min-width:140px;}
+  .empty-hint{font-size:12.5px;color:var(--ink-faint);padding:6px 2px;}
+  .name-hint{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin:0 0 14px;}
+  .file-input-label{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;}
+  .file-input-label:hover{border-color:var(--gold);}
+  .file-input-label input{display:none;}
+  .sync-note{font-size:12px;color:var(--ink-faint);margin-top:10px;line-height:1.6;}
+
+  @media (max-width:640px){
+    .topbar{padding:14px 16px 10px;gap:12px;}
+    .legend,.today-strip,.banner{padding-inline:16px;}
+    .cal-outer{padding-inline:16px;}
+    .brand-sub{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="app" dir="rtl" lang="he">
+
+  <div class="head-wrap">
+    <div class="topbar">
+      <div class="brand">
+        <span class="brand-mark">רוזן</span>
+        <span class="brand-sub">לוח חופשות עובדים</span>
+      </div>
+      <div class="nav">
+        <button class="nav-btn" id="nextBtn" aria-label="חודש הבא">›</button>
+        <div class="month-title" id="monthTitle">—</div>
+        <button class="nav-btn" id="prevBtn" aria-label="חודש קודם">‹</button>
+        <button class="today-btn" id="todayBtn">היום</button>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" id="manageBtn" title="ניהול עובדים, מחלקות וגיבוי" aria-label="ניהול עובדים, מחלקות וגיבוי">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1.08-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9.4a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9c.63.24 1.51.7 1.51 1.51V15Z"/></svg>
+        </button>
+        <button class="me-btn" id="meBtn">
+          <span class="me-avatar" id="meAvatar"></span>
+          <span id="meName">אורח/ת</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="legend" id="legend"></div>
+
+    <div class="banner">הלוח נשמר בדפדפן הזה בלבד. כדי לשתף עדכונים בין מנהלים — פתחו "ניהול" (⚙) ושלחו/טענו קובץ גיבוי.</div>
+
+    <div class="today-strip">
+      <div class="today-strip-head">היעדרויות היום</div>
+      <div class="today-strip-row" id="todayRow"></div>
+    </div>
+  </div>
+
+  <div class="cal-outer">
+    <div class="cal-inner">
+      <div class="weekday-row" id="weekdayRow"></div>
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
+  </div>
+
+  <!-- add leave modal -->
+  <div class="modal-backdrop" id="addBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="addModalTitle">
+      <div class="modal-head">
+        <h2 id="addModalTitle">הוספת חופשה</h2>
+        <div class="modal-date" id="addModalDate"></div>
+        <button class="modal-close" id="addClose" aria-label="סגירה">×</button>
+      </div>
+      <div class="modal-body">
+        <label class="field-label" for="empInput">שם העובד/ת</label>
+        <div class="combo">
+          <input type="text" id="empInput" autocomplete="off" placeholder="הקלד/י שם לחיפוש, או לבחירה מהרשימה...">
+          <div class="combo-list" id="empList"></div>
+        </div>
+        <div class="new-emp-dept" id="newEmpDeptWrap" hidden>
+          <label class="field-label">מחלקה עבור העובד/ת החדש/ה</label>
+          <div class="dept-pick" id="newEmpDeptPick"></div>
+        </div>
+        <div class="selected-emp" id="selectedEmpPreview" hidden></div>
+        <div class="inline-note" id="addNote" hidden></div>
+      </div>
+      <div class="modal-foot">
+        <span class="capacity-note" id="capacityNote"></span>
+        <button class="btn-primary" id="confirmAdd" disabled>הוספה ללוח</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- manage modal -->
+  <div class="modal-backdrop" id="manageBackdrop">
+    <div class="modal modal-lg" role="dialog" aria-modal="true" aria-labelledby="manageTitle">
+      <div class="modal-head">
+        <h2 id="manageTitle">ניהול צוות, מחלקות וגיבוי</h2>
+        <button class="modal-close" id="manageClose" aria-label="סגירה">×</button>
+      </div>
+      <div class="modal-body">
+        <section class="manage-section">
+          <h3>מחלקות</h3>
+          <div class="dept-list" id="deptList"></div>
+          <div class="add-row">
+            <input type="text" id="newDeptName" placeholder="שם מחלקה חדשה">
+            <input type="color" id="newDeptColor" class="swatch-input" value="#3B6E8F" title="צבע תגית">
+            <button class="btn-secondary" id="addDeptBtn">הוספת מחלקה</button>
+          </div>
+        </section>
+        <section class="manage-section">
+          <h3>עובדים</h3>
+          <div class="emp-table" id="empTable"></div>
+          <div class="add-row">
+            <input type="text" id="newEmpName" placeholder="שם עובד/ת חדש/ה">
+            <select id="newEmpDeptSel"></select>
+            <button class="btn-secondary" id="addEmpBtn">הוספת עובד/ת</button>
+          </div>
+        </section>
+        <section class="manage-section">
+          <h3>גיבוי ושיתוף בין מנהלים</h3>
+          <p class="sec-hint">הלוח נשמר רק בדפדפן הזה. כדי שמנהל/ת אחר/ת יראה את אותם נתונים — הורידו קובץ גיבוי ושלחו לו/לה (מייל, וואטסאפ), והם יטענו אותו כאן.</p>
+          <div class="add-row">
+            <button class="btn-secondary" id="exportBtn">⬇ הורדת קובץ גיבוי</button>
+            <label class="file-input-label">⬆ טעינת קובץ גיבוי<input type="file" id="importFile" accept="application/json"></label>
+          </div>
+          <p class="sync-note" id="importNote"></p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- name modal -->
+  <div class="modal-backdrop" id="nameBackdrop">
+    <div class="modal modal-sm" role="dialog" aria-modal="true" aria-labelledby="nameTitle">
+      <div class="modal-head">
+        <h2 id="nameTitle">ברוכים הבאים ללוח</h2>
+      </div>
+      <div class="modal-body">
+        <p class="name-hint">איך לקרוא לך בלוח? השם יוצג ליד חופשות שתוסיפו.</p>
+        <label class="field-label" for="nameInput">שם מלא</label>
+        <input type="text" id="nameInput" placeholder="לדוגמה: דנה כהן">
+      </div>
+      <div class="modal-foot" style="justify-content:flex-end;">
+        <button class="btn-primary" id="nameConfirm">התחלה</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var STORAGE_KEY = "rozen_board_data_v1";
+
+  var MONTHS = ["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר"];
+  var WEEKDAY_SHORT = ["א׳","ב׳","ג׳","ד׳","ה׳","ו׳","ש׳"];
+  var WEEKDAY_FULL = ["יום ראשון","יום שני","יום שלישי","יום רביעי","יום חמישי","יום שישי","יום שבת"];
+  var SWATCHES = ["#3B6E8F","#3F7D5C","#B8862E","#A14B3E","#6B4E8E","#2E8C8C","#9C5D7C","#7A5B44"];
+  var DEFAULT_DEPTS = [
+    {id:"sales", name:"מכירות", color:"#3B6E8F"},
+    {id:"underwriting", name:"חיתום", color:"#3F7D5C"},
+    {id:"claims", name:"תביעות", color:"#A14B3E"},
+    {id:"service", name:"שירות לקוחות", color:"#2E8C8C"},
+    {id:"finance", name:"כספים והנה\"ח", color:"#B8862E"},
+    {id:"management", name:"הנהלה", color:"#6B4E8E"}
+  ];
+
+  function uid(){
+    if(window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return "id-"+Math.random().toString(36).slice(2)+Date.now().toString(36);
+  }
+  function pad(n){return String(n).padStart(2,"0");}
+  function dateKey(y,m,d){return y+"-"+pad(m+1)+"-"+pad(d);}
+  function todayKey(){var t=new Date();return dateKey(t.getFullYear(),t.getMonth(),t.getDate());}
+  function initials(name){
+    name=(name||"").trim();
+    if(!name) return "?";
+    var parts=name.split(/\s+/).filter(Boolean);
+    if(parts.length===1) return parts[0].slice(0,2);
+    return (parts[0][0]||"")+(parts[parts.length-1][0]||"");
+  }
+  function colorForName(name){
+    var s=String(name||""); var h=0;
+    for(var i=0;i<s.length;i++){h=(h*31+s.charCodeAt(i))>>>0;}
+    return SWATCHES[h % SWATCHES.length];
+  }
+  function escapeHtml(s){
+    return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  // ================= local storage layer =================
+  function loadLocal(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        var parsed = JSON.parse(raw);
+        return {
+          departments: Array.isArray(parsed.departments) ? parsed.departments : DEFAULT_DEPTS.slice(),
+          employees: Array.isArray(parsed.employees) ? parsed.employees : [],
+          leaves: Array.isArray(parsed.leaves) ? parsed.leaves : []
+        };
+      }
+    }catch(e){}
+    return {departments: DEFAULT_DEPTS.slice(), employees: [], leaves: []};
+  }
+  function saveLocal(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        departments: state.config.departments,
+        employees: state.config.employees,
+        leaves: state.leaves
+      }));
+    }catch(e){ console.error("[רוזן] שמירה נכשלה", e); }
+  }
+
+  var loaded = loadLocal();
+  var state = {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth(),
+    config: {departments: loaded.departments, employees: loaded.employees},
+    leaves: loaded.leaves,
+    filterDept: null,
+    managerName: "",
+    managerColor: "",
+    pendingDate: null,
+    selectedEmployee: null,
+    newEmployeeMode: false,
+    newEmpDeptId: null
+  };
+
+  var els = {
+    monthTitle: document.getElementById("monthTitle"),
+    weekdayRow: document.getElementById("weekdayRow"),
+    calendarGrid: document.getElementById("calendarGrid"),
+    legend: document.getElementById("legend"),
+    todayRow: document.getElementById("todayRow"),
+    meBtn: document.getElementById("meBtn"),
+    meAvatar: document.getElementById("meAvatar"),
+    meName: document.getElementById("meName"),
+
+    addBackdrop: document.getElementById("addBackdrop"),
+    addModalDate: document.getElementById("addModalDate"),
+    addClose: document.getElementById("addClose"),
+    empInput: document.getElementById("empInput"),
+    empList: document.getElementById("empList"),
+    newEmpDeptWrap: document.getElementById("newEmpDeptWrap"),
+    newEmpDeptPick: document.getElementById("newEmpDeptPick"),
+    selectedEmpPreview: document.getElementById("selectedEmpPreview"),
+    addNote: document.getElementById("addNote"),
+    capacityNote: document.getElementById("capacityNote"),
+    confirmAdd: document.getElementById("confirmAdd"),
+
+    manageBackdrop: document.getElementById("manageBackdrop"),
+    manageBtn: document.getElementById("manageBtn"),
+    manageClose: document.getElementById("manageClose"),
+    deptList: document.getElementById("deptList"),
+    empTable: document.getElementById("empTable"),
+    newDeptName: document.getElementById("newDeptName"),
+    newDeptColor: document.getElementById("newDeptColor"),
+    addDeptBtn: document.getElementById("addDeptBtn"),
+    newEmpName: document.getElementById("newEmpName"),
+    newEmpDeptSel: document.getElementById("newEmpDeptSel"),
+    addEmpBtn: document.getElementById("addEmpBtn"),
+    exportBtn: document.getElementById("exportBtn"),
+    importFile: document.getElementById("importFile"),
+    importNote: document.getElementById("importNote"),
+
+    nameBackdrop: document.getElementById("nameBackdrop"),
+    nameInput: document.getElementById("nameInput"),
+    nameConfirm: document.getElementById("nameConfirm")
+  };
+
+  function openModal(el){ el.classList.add("open"); }
+  function closeModal(el){ el.classList.remove("open"); }
+
+  (function buildWeekdayRow(){
+    els.weekdayRow.innerHTML = WEEKDAY_SHORT.map(function(w){
+      return '<div class="weekday-cell">'+w+'</div>';
+    }).join("");
+  })();
+
+  function leavesForDate(key){
+    return state.leaves.filter(function(l){ return l.date===key; });
+  }
+  function hasLeave(key, employeeId){
+    return state.leaves.some(function(l){ return l.date===key && l.employeeId===employeeId; });
+  }
+  function deptById(id){
+    return state.config.departments.find(function(d){ return d.id===id; }) || null;
+  }
+
+  function renderMonthTitle(){
+    els.monthTitle.textContent = MONTHS[state.month] + " " + state.year;
+  }
+
+  function chipHtml(l, dimmed){
+    return '<div class="chip'+(dimmed?" dimmed":"")+'" data-id="'+l.id+'">' +
+      '<span class="dot" style="background:'+escapeHtml(l.deptColor||"#8B93A6")+'"></span>' +
+      '<span class="cname" title="'+escapeHtml(l.name)+(l.deptName?(" · "+escapeHtml(l.deptName)):"")+'">'+escapeHtml(l.name)+'</span>' +
+      '<button class="rm" data-rm="'+l.id+'" title="הסרה" aria-label="הסרת '+escapeHtml(l.name)+'">×</button>' +
+      '</div>';
+  }
+
+  function renderCalendar(){
+    renderMonthTitle();
+    var y=state.year, m=state.month;
+    var firstDow = new Date(y,m,1).getDay();
+    var daysInMonth = new Date(y,m+1,0).getDate();
+    var daysInPrev = new Date(y,m,0).getDate();
+    var totalCells = Math.ceil((firstDow+daysInMonth)/7)*7;
+    var tKey = todayKey();
+    var html = "";
+
+    for(var i=0;i<totalCells;i++){
+      var dayNum = i-firstDow+1;
+      var cellM=m, cellD;
+      var outside=false;
+      if(dayNum<1){ cellD = daysInPrev+dayNum; cellM=m-1; outside=true; }
+      else if(dayNum>daysInMonth){ cellD = dayNum-daysInMonth; cellM=m+1; outside=true; }
+      else { cellD = dayNum; }
+      var normY=y, normM=cellM;
+      if(normM<0){normM=11; normY=y-1;}
+      if(normM>11){normM=0; normY=y+1;}
+      var key = dateKey(normY, normM, cellD);
+      var dow = i%7;
+      var isWeekend = dow===5 || dow===6;
+      var isToday = key===tKey;
+      var entries = leavesForDate(key);
+      var count = entries.length;
+      var full = count>=10;
+
+      var classes = "day-cell" + (outside?" outside":"") + (isWeekend?" weekend":"") + (isToday?" is-today":"");
+      var chips = entries.map(function(l){
+        var dim = state.filterDept && l.deptId!==state.filterDept;
+        return chipHtml(l, dim);
+      }).join("");
+
+      html += '<div class="'+classes+'" data-date="'+key+'">' +
+        '<div class="day-head"><span class="day-num">'+cellD+'</span><span class="day-count">'+count+'/10</span></div>' +
+        '<div class="day-chips">'+chips+'</div>' +
+        '<button class="day-add" data-add="'+key+'" '+(full?"disabled":"")+'>'+(full?"התאריך מלא":"+ הוספה")+'</button>' +
+        '</div>';
+    }
+    els.calendarGrid.innerHTML = html;
+    if(els.addBackdrop.classList.contains("open")) updateConfirmState();
+  }
+
+  function renderTodayStrip(){
+    var entries = leavesForDate(todayKey());
+    if(entries.length===0){
+      els.todayRow.innerHTML = '<span class="today-empty">אין היעדרויות היום</span>';
+      return;
+    }
+    els.todayRow.innerHTML = entries.map(function(l){ return chipHtmlStatic(l); }).join("");
+  }
+  function chipHtmlStatic(l){
+    return '<div class="chip" style="flex:none;">' +
+      '<span class="dot" style="background:'+escapeHtml(l.deptColor||"#8B93A6")+'"></span>' +
+      '<span class="cname">'+escapeHtml(l.name)+'</span>' +
+      '</div>';
+  }
+
+  function renderLegend(){
+    var depts = state.config.departments;
+    var html = depts.map(function(d){
+      var active = state.filterDept===d.id;
+      return '<button class="legend-chip'+(active?" active":"")+'" data-dept="'+d.id+'">' +
+        '<span class="dot" style="background:'+escapeHtml(d.color)+'"></span>'+escapeHtml(d.name)+'</button>';
+    }).join("");
+    html += '<button class="legend-reset'+(state.filterDept?" show":"")+'" id="legendReset">הצגת הכל</button>';
+    els.legend.innerHTML = html;
+    var resetBtn = document.getElementById("legendReset");
+    if(resetBtn) resetBtn.addEventListener("click", function(){ state.filterDept=null; renderLegend(); renderCalendar(); });
+    Array.prototype.forEach.call(els.legend.querySelectorAll(".legend-chip"), function(btn){
+      btn.addEventListener("click", function(){
+        var id = btn.getAttribute("data-dept");
+        state.filterDept = state.filterDept===id ? null : id;
+        renderLegend();
+        renderCalendar();
+      });
+    });
+  }
+
+  function renderAll(){
+    renderLegend();
+    renderCalendar();
+    renderTodayStrip();
+    renderManageLists();
+  }
+
+  els.calendarGrid.addEventListener("click", function(e){
+    var addBtn = e.target.closest("[data-add]");
+    if(addBtn && !addBtn.disabled){
+      openAddModal(addBtn.getAttribute("data-add"));
+      return;
+    }
+    var rmBtn = e.target.closest("[data-rm]");
+    if(rmBtn){
+      removeLeave(rmBtn.getAttribute("data-rm"));
+      return;
+    }
+  });
+
+  document.getElementById("prevBtn").addEventListener("click", function(){
+    state.month--; if(state.month<0){state.month=11; state.year--;}
+    renderCalendar();
+  });
+  document.getElementById("nextBtn").addEventListener("click", function(){
+    state.month++; if(state.month>11){state.month=0; state.year++;}
+    renderCalendar();
+  });
+  document.getElementById("todayBtn").addEventListener("click", function(){
+    var t=new Date(); state.year=t.getFullYear(); state.month=t.getMonth();
+    renderCalendar();
+  });
+
+  // ================= writes (all local + immediate save) =================
+  function addLeaveEntry(dateStr, emp){
+    var dept = deptById(emp.deptId);
+    state.leaves.push({
+      id: uid(), date: dateStr, employeeId: emp.id, name: emp.name,
+      deptId: emp.deptId || null, deptName: dept ? dept.name : "",
+      deptColor: dept ? dept.color : "#8B93A6",
+      addedBy: state.managerName, createdAt: new Date().toISOString()
+    });
+    saveLocal();
+    renderAll();
+  }
+  function removeLeave(id){
+    state.leaves = state.leaves.filter(function(l){ return l.id!==id; });
+    saveLocal();
+    renderAll();
+  }
+  function addDepartment(name, color){
+    state.config.departments = state.config.departments.concat([{id: uid(), name:name, color:color}]);
+    saveLocal();
+    renderAll();
+  }
+  function updateDeptColor(id, color){
+    state.config.departments = state.config.departments.map(function(d){
+      return d.id===id ? Object.assign({}, d, {color:color}) : d;
+    });
+    saveLocal();
+    renderAll();
+  }
+  function deleteDepartment(id){
+    state.config.departments = state.config.departments.filter(function(d){ return d.id!==id; });
+    state.config.employees = state.config.employees.map(function(e){
+      return e.deptId===id ? Object.assign({}, e, {deptId:null}) : e;
+    });
+    saveLocal();
+    renderAll();
+  }
+  function addEmployee(name, deptId){
+    state.config.employees = state.config.employees.concat([{id: uid(), name:name, deptId:deptId}]);
+    saveLocal();
+    renderAll();
+  }
+  function updateEmployeeDept(id, deptId){
+    state.config.employees = state.config.employees.map(function(e){
+      return e.id===id ? Object.assign({}, e, {deptId:deptId}) : e;
+    });
+    saveLocal();
+    renderAll();
+  }
+  function deleteEmployee(id){
+    state.config.employees = state.config.employees.filter(function(e){ return e.id!==id; });
+    saveLocal();
+    renderAll();
+  }
+
+  // ================= export / import backup =================
+  els.exportBtn.addEventListener("click", function(){
+    var payload = {
+      departments: state.config.departments,
+      employees: state.config.employees,
+      leaves: state.leaves,
+      exportedAt: new Date().toISOString(),
+      exportedBy: state.managerName
+    };
+    var blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    var d = new Date();
+    a.href = url;
+    a.download = "rozen-leave-board-" + dateKey(d.getFullYear(), d.getMonth(), d.getDate()) + ".json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 2000);
+  });
+
+  els.importFile.addEventListener("change", function(){
+    var file = els.importFile.files && els.importFile.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      try{
+        var parsed = JSON.parse(reader.result);
+        if(!Array.isArray(parsed.departments) || !Array.isArray(parsed.employees) || !Array.isArray(parsed.leaves)){
+          throw new Error("bad shape");
+        }
+        state.config.departments = parsed.departments;
+        state.config.employees = parsed.employees;
+        state.leaves = parsed.leaves;
+        saveLocal();
+        renderAll();
+        els.importNote.textContent = "הגיבוי נטען בהצלחה.";
+        els.importNote.style.color = "var(--good)";
+      }catch(e){
+        els.importNote.textContent = "הקובץ לא תקין — ודאו שזה קובץ גיבוי שהורד מהלוח הזה.";
+        els.importNote.style.color = "var(--danger)";
+      }
+      els.importFile.value = "";
+    };
+    reader.readAsText(file, "utf-8");
+  });
+
+  // ================= manager identity =================
+  function loadManagerName(){
+    var saved=null, savedColor=null;
+    try{
+      saved = localStorage.getItem("rozen_manager_name");
+      savedColor = localStorage.getItem("rozen_manager_color");
+    }catch(e){}
+    if(saved){
+      state.managerName = saved;
+      state.managerColor = savedColor || colorForName(saved);
+      applyMe();
+    } else {
+      openModal(els.nameBackdrop);
+      els.nameInput.focus();
+    }
+  }
+  function applyMe(){
+    els.meName.textContent = state.managerName;
+    els.meAvatar.textContent = initials(state.managerName);
+    els.meAvatar.style.background = state.managerColor;
+  }
+  function saveManagerName(name){
+    name = name.trim();
+    if(!name) return;
+    state.managerName = name;
+    state.managerColor = colorForName(name);
+    try{
+      localStorage.setItem("rozen_manager_name", name);
+      localStorage.setItem("rozen_manager_color", state.managerColor);
+    }catch(e){}
+    applyMe();
+  }
+  els.nameConfirm.addEventListener("click", function(){
+    var v = els.nameInput.value.trim() || "מנהל/ת";
+    saveManagerName(v);
+    closeModal(els.nameBackdrop);
+  });
+  els.nameInput.addEventListener("keydown", function(e){
+    if(e.key==="Enter"){ els.nameConfirm.click(); }
+  });
+  els.meBtn.addEventListener("click", function(){
+    els.nameInput.value = state.managerName==="אורח/ת" ? "" : state.managerName;
+    openModal(els.nameBackdrop);
+    els.nameInput.focus();
+  });
+
+  // ================= add-leave modal =================
+  function openAddModal(dateStr){
+    state.pendingDate = dateStr;
+    var d = parseKeyToDate(dateStr);
+    els.addModalDate.textContent = WEEKDAY_FULL[d.getDay()] + ", " + d.getDate() + " ב" + MONTHS[d.getMonth()] + " " + d.getFullYear();
+    resetAddModal();
+    openModal(els.addBackdrop);
+    els.empInput.focus();
+  }
+  function parseKeyToDate(key){
+    var parts = key.split("-").map(Number);
+    return new Date(parts[0], parts[1]-1, parts[2]);
+  }
+  function closeAddModal(){
+    closeModal(els.addBackdrop);
+    state.pendingDate = null;
+    resetAddModal();
+  }
+  function resetAddModal(){
+    els.empInput.value = "";
+    state.selectedEmployee = null;
+    state.newEmployeeMode = false;
+    state.newEmpDeptId = state.config.departments[0] ? state.config.departments[0].id : null;
+    els.newEmpDeptWrap.hidden = true;
+    els.selectedEmpPreview.hidden = true;
+    els.addNote.hidden = true;
+    els.empList.innerHTML = "";
+    updateConfirmState();
+    renderEmpList("");
+  }
+  els.addClose.addEventListener("click", closeAddModal);
+  els.addBackdrop.addEventListener("click", function(e){ if(e.target===els.addBackdrop) closeAddModal(); });
+
+  function renderEmpList(query){
+    var q = query.trim().toLowerCase();
+    var employees = state.config.employees;
+    var filtered = q ? employees.filter(function(emp){ return emp.name.toLowerCase().indexOf(q)>-1; }) : employees;
+    var exactMatch = employees.some(function(emp){ return emp.name.trim().toLowerCase()===q; });
+
+    var rows = filtered.slice(0,30).map(function(emp){
+      var dept = deptById(emp.deptId);
+      return '<div class="combo-row" data-emp="'+emp.id+'">' +
+        '<span class="dot" style="background:'+escapeHtml(dept?dept.color:"#8B93A6")+'"></span>' +
+        '<span>'+escapeHtml(emp.name)+'</span>' +
+        '<span class="cdept">'+escapeHtml(dept?dept.name:"")+'</span>' +
+        '</div>';
+    }).join("");
+
+    if(q && !exactMatch){
+      rows += '<div class="combo-row add-new" data-addnew="1">➕ הוספת "'+escapeHtml(query.trim())+'" כעובד/ת חדש/ה</div>';
+    }
+    if(!rows){
+      rows = '<div class="combo-empty">'+(employees.length? "אין תוצאות" : "אין עדיין עובדים ברשימה — הקלד/י שם להוספה")+'</div>';
+    }
+    els.empList.innerHTML = rows;
+  }
+
+  els.empInput.addEventListener("input", function(){
+    state.selectedEmployee = null;
+    state.newEmployeeMode = false;
+    els.newEmpDeptWrap.hidden = true;
+    els.selectedEmpPreview.hidden = true;
+    renderEmpList(els.empInput.value);
+    updateConfirmState();
+  });
+
+  els.empList.addEventListener("click", function(e){
+    var row = e.target.closest(".combo-row");
+    if(!row) return;
+    if(row.hasAttribute("data-addnew")){
+      state.newEmployeeMode = true;
+      state.selectedEmployee = null;
+      renderDeptPick();
+      els.newEmpDeptWrap.hidden = false;
+      els.empList.innerHTML = "";
+      updateConfirmState();
+      return;
+    }
+    var empId = row.getAttribute("data-emp");
+    var emp = state.config.employees.find(function(x){ return x.id===empId; });
+    if(!emp) return;
+    state.selectedEmployee = emp;
+    state.newEmployeeMode = false;
+    els.empInput.value = emp.name;
+    els.empList.innerHTML = "";
+    els.newEmpDeptWrap.hidden = true;
+    showSelectedPreview(emp);
+    updateConfirmState();
+  });
+
+  function showSelectedPreview(emp){
+    var dept = deptById(emp.deptId);
+    els.selectedEmpPreview.hidden = false;
+    els.selectedEmpPreview.innerHTML = '<span class="dot" style="background:'+escapeHtml(dept?dept.color:"#8B93A6")+'"></span>' +
+      '<span>'+escapeHtml(emp.name)+'</span><span style="color:var(--ink-faint);font-weight:500;">'+escapeHtml(dept?dept.name:"ללא מחלקה")+'</span>';
+  }
+
+  function renderDeptPick(){
+    var depts = state.config.departments;
+    if(!state.newEmpDeptId && depts[0]) state.newEmpDeptId = depts[0].id;
+    els.newEmpDeptPick.innerHTML = depts.map(function(d){
+      var sel = state.newEmpDeptId===d.id;
+      return '<button type="button" class="dept-pick-btn'+(sel?" selected":"")+'" data-pickdept="'+d.id+'">' +
+        '<span class="dot" style="background:'+escapeHtml(d.color)+'"></span>'+escapeHtml(d.name)+'</button>';
+    }).join("");
+  }
+  els.newEmpDeptPick.addEventListener("click", function(e){
+    var btn = e.target.closest("[data-pickdept]");
+    if(!btn) return;
+    state.newEmpDeptId = btn.getAttribute("data-pickdept");
+    renderDeptPick();
+    updateConfirmState();
+  });
+
+  function updateConfirmState(){
+    var dateStr = state.pendingDate;
+    var count = dateStr ? leavesForDate(dateStr).length : 0;
+    var full = count>=10;
+    var note = "";
+    var canConfirm = false;
+
+    if(full){
+      note = "התאריך מלא (10/10) — לא ניתן להוסיף עוד עובדים ליום זה.";
+    } else if(state.selectedEmployee){
+      if(hasLeave(dateStr, state.selectedEmployee.id)){
+        note = escapeHtml(state.selectedEmployee.name) + " כבר רשום/ה בתאריך זה.";
+      } else {
+        canConfirm = true;
+      }
+    } else if(state.newEmployeeMode){
+      var name = els.empInput.value.trim();
+      canConfirm = !!(name && state.newEmpDeptId);
+      if(!state.config.departments.length){ note = "יש להוסיף מחלקה אחת לפחות דרך ניהול הצוות."; canConfirm=false; }
+    }
+
+    els.addNote.hidden = !note;
+    els.addNote.textContent = note;
+    els.capacityNote.textContent = dateStr ? (count+"/10 עובדים ברשימה") : "";
+    els.confirmAdd.disabled = !canConfirm;
+  }
+
+  els.confirmAdd.addEventListener("click", function(){
+    var dateStr = state.pendingDate;
+    if(!dateStr) return;
+    if(leavesForDate(dateStr).length>=10){ updateConfirmState(); return; }
+    if(state.selectedEmployee){
+      if(hasLeave(dateStr, state.selectedEmployee.id)) return;
+      addLeaveEntry(dateStr, state.selectedEmployee);
+    } else if(state.newEmployeeMode){
+      var name = els.empInput.value.trim();
+      if(!name || !state.newEmpDeptId) return;
+      var newEmp = {id: uid(), name: name, deptId: state.newEmpDeptId};
+      state.config.employees = state.config.employees.concat([newEmp]);
+      saveLocal();
+      addLeaveEntry(dateStr, newEmp);
+    } else {
+      return;
+    }
+    closeAddModal();
+  });
+
+  // ================= manage modal =================
+  els.manageBtn.addEventListener("click", function(){
+    renderManageLists();
+    els.importNote.textContent = "";
+    openModal(els.manageBackdrop);
+  });
+  els.manageClose.addEventListener("click", function(){ closeModal(els.manageBackdrop); });
+  els.manageBackdrop.addEventListener("click", function(e){ if(e.target===els.manageBackdrop) closeModal(els.manageBackdrop); });
+
+  function renderManageLists(){
+    var depts = state.config.departments;
+    var emps = state.config.employees;
+
+    els.deptList.innerHTML = depts.length ? depts.map(function(d){
+      return '<div class="row-item">' +
+        '<input type="color" class="swatch-input" value="'+d.color+'" data-deptcolor="'+d.id+'" title="שינוי צבע">' +
+        '<span class="rname">'+escapeHtml(d.name)+'</span>' +
+        '<button class="row-del" data-deldept="'+d.id+'" title="מחיקת מחלקה" aria-label="מחיקת '+escapeHtml(d.name)+'">×</button>' +
+        '</div>';
+    }).join("") : '<div class="empty-hint">אין עדיין מחלקות.</div>';
+
+    els.empTable.innerHTML = emps.length ? emps.map(function(emp){
+      var opts = depts.map(function(d){
+        return '<option value="'+d.id+'"'+(emp.deptId===d.id?" selected":"")+'>'+escapeHtml(d.name)+'</option>';
+      }).join("");
+      return '<div class="row-item">' +
+        '<span class="dot" style="background:'+escapeHtml(deptById(emp.deptId)?deptById(emp.deptId).color:"#8B93A6")+'"></span>' +
+        '<span class="rname">'+escapeHtml(emp.name)+'</span>' +
+        '<select data-empdept="'+emp.id+'">'+opts+'</select>' +
+        '<button class="row-del" data-delemp="'+emp.id+'" title="מחיקת עובד/ת" aria-label="מחיקת '+escapeHtml(emp.name)+'">×</button>' +
+        '</div>';
+    }).join("") : '<div class="empty-hint">אין עדיין עובדים. הוסיפו את חברי הצוות למטה.</div>';
+
+    els.newEmpDeptSel.innerHTML = depts.map(function(d){
+      return '<option value="'+d.id+'">'+escapeHtml(d.name)+'</option>';
+    }).join("") || "";
+    els.addEmpBtn.disabled = depts.length===0;
+  }
+
+  els.deptList.addEventListener("click", function(e){
+    var del = e.target.closest("[data-deldept]");
+    if(del){ deleteDepartment(del.getAttribute("data-deldept")); }
+  });
+  els.deptList.addEventListener("change", function(e){
+    var colorInput = e.target.closest("[data-deptcolor]");
+    if(colorInput){ updateDeptColor(colorInput.getAttribute("data-deptcolor"), colorInput.value); }
+  });
+
+  els.empTable.addEventListener("click", function(e){
+    var del = e.target.closest("[data-delemp]");
+    if(del){ deleteEmployee(del.getAttribute("data-delemp")); }
+  });
+  els.empTable.addEventListener("change", function(e){
+    var sel = e.target.closest("[data-empdept]");
+    if(sel){ updateEmployeeDept(sel.getAttribute("data-empdept"), sel.value); }
+  });
+
+  els.addDeptBtn.addEventListener("click", function(){
+    var name = els.newDeptName.value.trim();
+    if(!name) return;
+    var color = els.newDeptColor.value || SWATCHES[state.config.departments.length % SWATCHES.length];
+    addDepartment(name, color);
+    els.newDeptName.value = "";
+    els.newDeptColor.value = SWATCHES[(state.config.departments.length) % SWATCHES.length];
+  });
+  els.newDeptName.addEventListener("keydown", function(e){ if(e.key==="Enter") els.addDeptBtn.click(); });
+
+  els.addEmpBtn.addEventListener("click", function(){
+    var name = els.newEmpName.value.trim();
+    var deptId = els.newEmpDeptSel.value;
+    if(!name || !deptId) return;
+    addEmployee(name, deptId);
+    els.newEmpName.value = "";
+  });
+  els.newEmpName.addEventListener("keydown", function(e){ if(e.key==="Enter") els.addEmpBtn.click(); });
+
+  // ================= boot =================
+  renderAll();
+  loadManagerName();
+
+})();
+</script>
+</body>
+</html>
